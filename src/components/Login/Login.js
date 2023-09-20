@@ -24,13 +24,13 @@ const passwordReducer = (state, action) => {
 	if (action.type === "USER_INPUT") {
 		return {
 			value: action.val,
-			isValid: action.val.trim().length > 6,
+			isValid: action.val.trim().length > 4,
 		};
 	}
 	if (action.type === "INPUT_BLUR") {
 		return {
 			value: state.value,
-			isValid: state.value.trim().length > 6,
+			isValid: state.value.trim().length > 4,
 		};
 	}
 	return state;
@@ -45,8 +45,8 @@ const Login = (props) => {
 	});
 
 	const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-		value: "",
-		isValid: false,
+		value: "Pepsi",
+		isValid: true,
 	});
 
 	useEffect(() => {
@@ -96,7 +96,7 @@ const Login = (props) => {
 						!passwordState.isValid ? classes.invalid : ""
 					}`}
 				>
-					<label htmlFor="password">Password</label>
+					<label htmlFor="pepsi">Password</label>
 					<input
 						type="password"
 						id="password"
