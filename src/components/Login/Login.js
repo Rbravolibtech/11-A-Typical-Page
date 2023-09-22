@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
+import AuthContext from "../../store/auth-context";
 
 const emailReducer = (state, action) => {
 	if (action.type === "USER_INPUT") {
@@ -24,13 +25,13 @@ const passwordReducer = (state, action) => {
 	if (action.type === "USER_INPUT") {
 		return {
 			value: action.val,
-			isValid: action.val.trim().length > 4,
+			isValid: action.val.trim().length > 6,
 		};
 	}
 	if (action.type === "INPUT_BLUR") {
 		return {
 			value: state.value,
-			isValid: state.value.trim().length > 4,
+			isValid: state.value.trim().length > 6,
 		};
 	}
 	return state;
@@ -41,13 +42,15 @@ const Login = (props) => {
 
 	const [emailState, dispatchEmail] = useReducer(emailReducer, {
 		value: "",
-		isValid: false,
+		isValid: null,
 	});
 
 	const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-		value: "Pepsi",
-		isValid: true,
+		value: "",
+		isValid: null,
 	});
+
+	const authCtx = useContext(AuthContext);
 
 	useEffect(() => {
 		setFormIsValid(emailState.isValid && passwordState.isValid);
@@ -71,7 +74,7 @@ const Login = (props) => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		props.onLogin(emailState.value, passwordState.value);
+		authCtx.onLogin(emailState.value, passwordState.value);
 	};
 
 	return (

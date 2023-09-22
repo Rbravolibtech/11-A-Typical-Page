@@ -9,19 +9,19 @@ const Navigation = () => {
 	return (
 		<nav className={classes.nav}>
 			<ul>
-				{ctx.isLoggedIn && (
+				{ctx?.isLoggedIn && (
 					<li>
 						<a href="/">Users</a>
 					</li>
 				)}
-				{ctx.isLoggedIn && (
+				{ctx?.isLoggedIn && (
 					<li>
 						<a href="/">Admin</a>
 					</li>
 				)}
-				{ctx.isLoggedIn && (
+				{ctx?.isLoggedIn && (
 					<li>
-						<button onClick={ctx.onLogout}>Logout</button>
+						<button onClick={ctx?.onLogout}>Logout</button>
 					</li>
 				)}
 			</ul>
