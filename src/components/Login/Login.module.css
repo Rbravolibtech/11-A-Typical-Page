@@ -1,3 +1,9 @@
 .actions {
 	text-align: center;
 }
+
+.btn {
+	border-color: blue;
+	background-color: rgb(31, 215, 40);
+	border-width: 5px;
+}
